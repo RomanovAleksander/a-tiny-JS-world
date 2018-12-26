@@ -8,25 +8,46 @@
 // ======== OBJECTS DEFINITIONS ========
 // Define your objects here
 class Inhabitant {
-    constructor(species, name, gender, legs, hands, saying) {
-        this.species = species;
+    constructor(name, gender, species, legs, hands, saying) {
         this.name = name;
         this.gender = gender;
+        this.species = species;
         this.legs = legs;
         this.hands = hands;
         this.saying = saying;
     }
+
+    toString() {
+        return [this.species, this.name, this.gender, this.legs, this.hands,  this.saying].join(' ; ')}
 }
 
-const dog = new Inhabitant('dog','Lucky', 'male', '4', '0', 'Woof-woof');
-const cat = new Inhabitant('cat','Tihon', 'male', '4', '0', 'Meow');
-const woman = new Inhabitant('human','Jenny', 'female', '2', '2', 'Hi, animals');
-const man = new Inhabitant('human','Arnold', 'male', '2', '2', 'I\'ll be back');
+class Human extends Inhabitant {
+    constructor(name, gender, saying, species ='human', legs = 2, hands = 2) {
+        super(name, gender, species, legs, hands, saying,);
+    }
+}
 
-let inhabitants = [dog, cat, woman, man];
+class Dog extends Inhabitant {
+    constructor(name, gender, species = 'dog', legs = 4, hands = 0, saying = 'Woof-woof') {
+        super(name, gender, species, legs, hands, saying);
+    }
+}
+
+class Cat extends Inhabitant {
+    constructor(name, gender, species = 'cat', legs = 4, hands = 0, saying = 'Meow') {
+        super(name, gender, species, legs, hands, saying);
+    }
+}
+
+const inhabitants = [
+    new Dog('Lucky', 'male'),
+    new Cat('Tihon', 'male'),
+    new Human('Jenny', 'female', 'Hi, animals'),
+    new Human('Arnold', 'male', 'I\'ll be back')
+];
 
 inhabitants.forEach(person => {
-    print([person.species, person.name, person.gender, person.legs, person.hands, person.saying].join(' ; '));
+    print(person)
 });
 
 // ======== OUTPUT ========
